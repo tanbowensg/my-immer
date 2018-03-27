@@ -5,10 +5,9 @@ function produce(baseState, producer) {
 
   producer(proxy)
 
-  // const result = finalize(proxy)
+  const result = finalize(proxy)
 
-  // revoke()
-  return proxy
+  return result
 }
 
 function createState(parent, base) {
@@ -95,6 +94,25 @@ function markChanged(state) {
   }
 }
 
+function finalize(proxy) {
+  const state = proxy[PROXY_STATE]
+  if (state.modified === true) {
+    const keys = Object.keys(state.copy)
+    const obj = {}
+    keys.forEach(key => {
+      const val = state.copy[key]
+      if (isProxy(val)) {
+        obj[key] = finalize(val)
+      } else {
+        obj[key] = val
+      }
+    })
+    return obj
+  } else {
+      return state.base
+  }
+}
+
 function isProxyable(value) {
   if (!value) return false
   if (typeof value !== "object") return false
@@ -132,6 +150,6 @@ const obj = {
 
 const result = produce(obj, (d => (d.b.c.z = 2435)))
 
-console.log(result)
-console.log('d.b.c.z', result.b.c.z)
-console.log('obj', obj)
+console.log('初始对象', obj)
+console.log('输出对象', result)
+console.log('初始对象', obj)
