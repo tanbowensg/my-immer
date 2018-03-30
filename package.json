@@ -1,0 +1,22 @@
+{
+  "name": "my-immer",
+  "version": "1.0.0",
+  "description": "a simple immer.js for study",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanbowensg/my-immer.git"
+  },
+  "author": "tanbowensg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tanbowensg/my-immer/issues"
+  },
+  "homepage": "https://github.com/tanbowensg/my-immer#readme",
+  "dependencies": {
+    "lodash": "^4.17.5"
+  }
+}

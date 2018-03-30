@@ -137,19 +137,5 @@ function has(thing, prop) {
 function isProxy(value) {
   return !!value && !!value[PROXY_STATE]
 }
-//------------测试
 
-const obj = {
-  a: 1,
-  b: {
-    c: {
-      z: 2
-    }
-  }
-}
-
-const result = produce(obj, (d => (d.b.c.z = 2435)))
-
-console.log('初始对象', obj)
-console.log('输出对象', result)
-console.log('初始对象', obj)
+module.exports = produce
